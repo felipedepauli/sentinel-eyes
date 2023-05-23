@@ -1,0 +1,3 @@
+[submodule "sentinel-core"]
+	path = sentinel-core
+	url = git@github.com:felipedepauli/sentinel-core.git
