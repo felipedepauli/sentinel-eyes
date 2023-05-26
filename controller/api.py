@@ -1,8 +1,9 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-# from Drone import Drone
+from drone import Drone
 
-# drone = Drone()
+# Initialize a drone instance
+drone = Drone()
 
 app = Flask(__name__)
 CORS(app)
@@ -11,39 +12,32 @@ CORS(app)
 def handle_command():
     data = request.get_json()
 
+    # If no data is provided, return an error
     if not data:
         return jsonify({"message": "No input data provided"}), 400
 
+    # If there's no command in the data, return an error
     if 'command' not in data:
         return jsonify({"message": "No 'command' in input data"}), 400
 
     command = data['command']
+    print(f"[API] Received command: {command}")
 
-    # Aqui é onde você processaria o comando e enviaria para o dispositivo RC.
-    # Agora estamos também atualizando o estado do drone com base no comando recebido.
-    print(f"Received command: {command}")
-
-    if command == 'throttle_up':
-        print("Going UP!")
-        # drone.set_state(Drone.STARTING)
-    elif command == 'throttle_down':
-        print("Going DOWN!")
-        # drone.set_state(Drone.SHUTTING_DOWN)
-    if command == 'turn_left':
-        print("Wow, turning left!")
-        # drone.set_state(Drone.STARTING)
-    elif command == 'turn_right':
-        print("Wow, turning right!")
-        # drone.set_state(Drone.SHUTTING_DOWN)
-    if command == 'stop_all':
-        print("Stop it all!!!")
-        # drone.set_state(Drone.STARTING)
-    elif command == 'start':
-        print("Let's start this flight!")
-        # drone.set_state(Drone.SHUTTING_DOWN)
-    if command == 'auth':
-        print("Check this guy!!")
-        # drone.set_state(Drone.STARTING)
+    # Process the command and change the drone state accordingly
+    if command == 'startDrone':
+        drone.set_state(Drone.READY)
+    elif command == 'riseUp':
+        drone.set_state(Drone.RISING)
+    elif command == 'fallDown':
+        drone.set_state(Drone.FALLING)
+    elif command == 'spinRight':
+        drone.set_state(Drone.MOVING_RIGHT)
+    elif command == 'spinLeft':
+        drone.set_state(Drone.MOVING_LEFT)
+    elif command == 'floating':
+        drone.set_state(Drone.KEEPING)
+    elif command == 'stopDrone':
+        drone.set_state(Drone.SHUTTING_DOWN)
     else:
         return jsonify({"message": "Command not recognized"}), 400
 
@@ -51,4 +45,3 @@ def handle_command():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
-

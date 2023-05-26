@@ -204,7 +204,7 @@ class MultiWii:
             time.sleep(0.05)
 
         # continuous arm signal for 1s
-        for _ in range(20):
+        for _ in range(100):
             buf = []
             util.push16(buf, 1500)
             util.push16(buf, 1500)
@@ -324,7 +324,10 @@ class MultiWii:
                 self.altitude['timestamp'] = "%0.2f" % (time.time(),)
                 return self.altitude
             elif cmd == MultiWii.RC:
+                print('Getting RC data')
                 temp = struct.unpack('<'+'h'*int(datalength/2), data)
+                print(temp)
+                print('Received RC data')
                 self.rcChannels['roll'] = temp[0]
                 self.rcChannels['pitch'] = temp[1]
                 self.rcChannels['yaw'] = temp[2]
@@ -603,15 +606,15 @@ class MultiWii:
 #         print(">> Sping to Right")
 
 
-board = MultiWii("/dev/ttyACM0")
-board.init()
+# board = MultiWii("/dev/ttyACM0")
+# board.init()
 
-# # board.goUp()
-# # board.goDown()
-# # # # # board.goUp()
-# # # # # board.keepFloating()
-# # # # # board.goDown()
+# # # board.goUp()
+# # # board.goDown()
+# # # # # # board.goUp()
+# # # # # # board.keepFloating()
+# # # # # # board.goDown()
 
-board.close()
+# board.close()
 
 
