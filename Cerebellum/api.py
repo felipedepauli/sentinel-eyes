@@ -2,14 +2,25 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from drone import Drone
 
-# Initialize a drone instance
+# Initializing a drone instance
 drone = Drone()
 
 app = Flask(__name__)
+# Enabling CORS for the Flask app
 CORS(app)
 
 @app.route('/api/command', methods=['POST'])
 def handle_command():
+    """
+    Handle POST request to the /api/command route. 
+    Process the 'command' provided in the request data 
+    and update the drone state accordingly.
+
+    Returns:
+    - 400 status and an error message if no data is provided,
+    or if 'command' is not in the provided data, or if the command is not recognized.
+    - 200 status and a success message if the command is processed successfully.
+    """
     data = request.get_json()
 
     # If no data is provided, return an error
@@ -44,4 +55,5 @@ def handle_command():
     return jsonify({"message": "Command received and processed"}), 200
 
 if __name__ == '__main__':
+    # Start the Flask application
     app.run(host='0.0.0.0', port=5000, debug=True)
