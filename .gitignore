@@ -1,0 +1,56 @@
+# Arquivos e diretórios gerados pelo CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+*.cmake
+Makefile
+*.o
+*.so
+*.a
+*.out
+*.dll
+*.lib
+*.exe
+*.dylib
+
+# Diretório de compilação e cache do C++
+**/build/
+**/Debug/
+**/Release/
+
+# Arquivos e diretórios gerados pelo Node.js
+**/node_modules/
+LookingAt/view/node_modules/
+LookingAt/API/node_modules/
+**/npm-debug.log
+**/yarn-error.log
+**/yarn-debug.log
+**/.package-lock.json
+**/.yarn-integrity
+
+# Arquivos e diretórios gerados pelo React
+/public/bundle.js
+/src/bundle.js
+
+# Arquivos e diretórios de configuração do editor
+.vscode/
+.idea/
+*.sublime*
+*.sw*
+*.swo
+*.bak
+
+# Arquivos temporários e de backup
+*~
+*.tmp
+*.swp
+*.swo
+*.bak
+*.DS_Store
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
