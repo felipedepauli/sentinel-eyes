@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from drone import Drone
+from Cerebellum.Wings import Wings
 
 # Initializing a drone instance
 drone = Drone()

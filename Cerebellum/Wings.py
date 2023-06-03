@@ -5,7 +5,7 @@ import numpy as np
 from msp import MultiWii
 
 # This class is responsible for connecting to the drone board and sending it commands
-class DroneCommands:
+class Wings:
     # It initializes the drone connecting to the flight controller
     def __init__(self):
         print("[Sentinel] Connecting to board...")
